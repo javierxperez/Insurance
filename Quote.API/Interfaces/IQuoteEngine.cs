@@ -9,5 +9,6 @@ namespace Quote.API.Interfaces
     public interface IQuoteEngine
     {
         double CalculatePremium(QuoteRequest request);
+        bool ValidateQuoteData(QuoteRequest request);
     }
 }

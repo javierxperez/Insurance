@@ -19,8 +19,11 @@ namespace Quote.API.Controllers
         }
 
         [HttpPost("createQuote")]
-        public ActionResult<QuoteResponse> PostQuote([FromBody] QuoteRequest quoteRequest)
+        public ActionResult<QuoteResponse> CreateQuote([FromBody] QuoteRequest quoteRequest)
         {
+            if (!_engine.ValidateQuoteData(quoteRequest))
+                return BadRequest("Revenue, state, or business is not valid");
+                
             var response = new QuoteResponse
             {
                 premium = _engine.CalculatePremium(quoteRequest)

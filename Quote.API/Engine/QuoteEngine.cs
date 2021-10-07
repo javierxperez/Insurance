@@ -17,5 +17,16 @@ namespace Quote.API.Engine
             var basePremium = Math.Ceiling(request.revenue/1000);         
             return (stateFactor * businessFactor * basePremium * QuoteConstants.Hazard);
         }
+        public bool ValidateQuoteData(QuoteRequest request)
+        {
+            bool stateIsValid = QuoteConstants.States.ContainsKey(request.state);
+            bool businessIsValid = QuoteConstants.Businesses.ContainsKey(request.business);
+            bool revenueIsValid = request.revenue > 0;
+
+            if (stateIsValid == false || businessIsValid == false || revenueIsValid == false)
+                return false;
+            else
+                return true;
+        }
     }
 }
