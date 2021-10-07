@@ -28,7 +28,7 @@ namespace Quote.API.Controllers
             {
                 premium = _engine.CalculatePremium(quoteRequest)
             };
-            return response;
+            return Ok(response);
         }
     }
 }
